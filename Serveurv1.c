@@ -98,8 +98,6 @@ char *rcvMsg(int D_Socket_Com){
 
 
 void readFile(int D_Socket_Com) {
-  char vrai[4]="VRAI\n";
-  char faux[4]="FAUX\n";
   FILE *fp;
   char * line = NULL;
   size_t len = 0;
@@ -124,10 +122,11 @@ void readFile(int D_Socket_Com) {
             }
             sendMsg(D_Socket_Com,"waiting");
             if(atoi(rcvMsg(D_Socket_Com))==index){
-              sendMsg(D_Socket_Com,vrai);
+              printf("Tringered envoi VRAI \n");
+              sendMsg(D_Socket_Com,"VRAI");
             }
             else{
-              sendMsg(D_Socket_Com,faux);
+              sendMsg(D_Socket_Com,"FAUX");
             }
         }
     }
