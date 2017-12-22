@@ -27,7 +27,7 @@ int main(){
 
   //envoi nom
   memset(buffer, 0, 1024);
-  scanf("%s",&buffer );
+  scanf("%s",buffer );
   sendMsg(D_Socket_Client,buffer);
 
   while (1){
@@ -43,7 +43,7 @@ int main(){
       printf("Reponse n° : ");
       memset(incoming, 0, 1024);
       scanf("%s",incoming);
-      sendMsg(D_Socket_Client,buffer);
+      sendMsg(D_Socket_Client,incoming);
     } else {
       printf("%s\n",incoming);
     }

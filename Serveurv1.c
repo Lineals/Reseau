@@ -83,11 +83,8 @@ int main(){
 }
 
 void sendMsg(int D_Socket_Com, char *msg){
-  char sendBuffer[1024];
-  memset(sendBuffer,0,1024);
-  strcpy(sendBuffer,msg);
-  send(D_Socket_Com,sendBuffer,strlen(sendBuffer),0);
-  printf("Debug send buffer : %s\n", sendBuffer);
+  send(D_Socket_Com,msg,strlen(msg),0);
+  printf("Debug send buffer : %s\n", msg);
   sleep(0.03);
 }
 
@@ -112,12 +109,12 @@ void readFile(int D_Socket_Com) {
   if(fp){
     while ((read = getline(&line, &len, fp)) != -1 && read != NULL) {
             int loop=0;
-            char index;
+            int index;
             char *token = strtok(line, ",");
             while (token != NULL) {
               if (loop==0){
                 printf("Bonne reponse server side %s\n", token);
-                index=token;
+                index=atoi(token);
                 token = strtok(NULL, ",");
               } else {
                 sendMsg(D_Socket_Com, token);
@@ -126,30 +123,15 @@ void readFile(int D_Socket_Com) {
               loop++;
             }
             sendMsg(D_Socket_Com,"waiting");
-            if(strcmp(rcvMsg(D_Socket_Com),index)==0){sendMsg(D_Socket_Com,vrai);}
-            else{ sendMsg(D_Socket_Com,faux);}
+            if(atoi(rcvMsg(D_Socket_Com))==index){
+              sendMsg(D_Socket_Com,vrai);
+            }
+            else{
+              sendMsg(D_Socket_Com,faux);
+            }
         }
     }
     sendMsg(D_Socket_Com,"exit");
 
     close(D_Socket_Com);
-}
-
-void Questionnaire(struct client monclient, int D_Socket_Com){
-  char vrai[4]="VRAI\n";
-  char faux[4]="FAUX\n";
-  sendMsg(D_Socket_Com,"Ringo starr est \n1) -le batteur des beatles \n2) -le chancelier allemand en 1935");
-  if(rcvMsg(D_Socket_Com)=="1"){sendMsg(D_Socket_Com,vrai);}
-  else{ sendMsg(D_Socket_Com,faux);}
-  sendMsg(D_Socket_Com,"Emilio est un \n1) -Ninja \n2) -Homme avec bien trop d'énergie");
-  if(rcvMsg(D_Socket_Com)=="2"){sendMsg(D_Socket_Com,vrai);}
-  else{ sendMsg(D_Socket_Com,faux);}
-  sendMsg(D_Socket_Com,"Pourquoi \n1) -Oui \n2) -Non");
-  if(rcvMsg(D_Socket_Com)=="2"){sendMsg(D_Socket_Com,vrai);}
-  else{ sendMsg(D_Socket_Com,faux);}
-
-  //envoie fin
-  sendMsg(D_Socket_Com,"exit");
-
-  close(D_Socket_Com);
 }
