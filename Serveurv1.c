@@ -34,7 +34,7 @@ int main(){
   D_Socket_Ecoute  = socket(PF_INET, SOCK_STREAM, 0);
   Struct_Addr_Serv.sin_family = AF_INET;
   Struct_Addr_Serv.sin_port = htons(7891);
-  Struct_Addr_Serv.sin_addr.s_addr = inet_addr("192.168.70.141");
+  Struct_Addr_Serv.sin_addr.s_addr = inet_addr("127.0.0.1");
   memset(Struct_Addr_Serv.sin_zero, '\0', sizeof(Struct_Addr_Serv.sin_zero));
 
   int yes = 1;
