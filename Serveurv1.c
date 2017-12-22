@@ -34,7 +34,7 @@ int main(){
   D_Socket_Ecoute  = socket(PF_INET, SOCK_STREAM, 0);
   Struct_Addr_Serv.sin_family = AF_INET;
   Struct_Addr_Serv.sin_port = htons(7891);
-  Struct_Addr_Serv.sin_addr.s_addr = inet_addr("127.0.0.1");
+  Struct_Addr_Serv.sin_addr.s_addr = inet_addr("192.168.70.141");
   memset(Struct_Addr_Serv.sin_zero, '\0', sizeof(Struct_Addr_Serv.sin_zero));
 
   int yes = 1;
@@ -98,8 +98,6 @@ char *rcvMsg(int D_Socket_Com){
 
 
 void readFile(int D_Socket_Com) {
-  char vrai[4]="VRAI\n";
-  char faux[4]="FAUX\n";
   FILE *fp;
   char * line = NULL;
   size_t len = 0;
@@ -124,10 +122,11 @@ void readFile(int D_Socket_Com) {
             }
             sendMsg(D_Socket_Com,"waiting");
             if(atoi(rcvMsg(D_Socket_Com))==index){
-              sendMsg(D_Socket_Com,vrai);
+              printf("Tringered envoi VRAI \n");
+              sendMsg(D_Socket_Com,"VRAI");
             }
             else{
-              sendMsg(D_Socket_Com,faux);
+              sendMsg(D_Socket_Com,"FAUX");
             }
         }
     }
