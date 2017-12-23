@@ -1,6 +1,6 @@
 # **Compte rendu TPs de réseau**
 
-Auteurs : Mollandin Rémi, Peuckert Théo
+Auteurs : Mollandin Rémy, Peuckert Théo
 
 ## Socket
 Pour le socket, nous avons principalement repris le squelette du cours et l'avons complété. Ainsi, on peu échanger des packets de données entre le server et le client.
