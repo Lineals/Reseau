@@ -8,7 +8,7 @@ Pour le socket, nous avons principalement repris le squelette du cours et l'avon
 
 Afin de structurer et d'améliorer la ***lisibilité et l'efficacité*** du code, nous avons crée des ***fonctions envoi et reception***.
 
-La fonction **sendMsg** prent en paramètre ***le socket et la chaîne de charactères*** que l'on souhaite envoyer. Il envoie ensuite ce message au travers du socket.
+La fonction **sendMsg** prend en paramètre ***le socket et le message*** que l'on souhaite envoyer sous forme de chaîne de caractères. Il envoie ensuite ce message avec le socket.
 ```c
 void sendMsg(int D_Socket_Com, char *msg){
   send(D_Socket_Com,msg,strlen(msg),0);
