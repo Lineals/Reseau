@@ -10,8 +10,8 @@
 
 # ########################################## #
 
-# Makefile minimaliste pour le TP IPI sur la manipulation d’images
-# Pierre Tellier, ENSiiE, octobre 2017
+# Makefile minimaliste pour le TP Réseau
+# Pas Pierre Tellier, ENSiiE, Decembre 2017
 all: Serveurv1 Clientv1
 
 Serveurv1:
